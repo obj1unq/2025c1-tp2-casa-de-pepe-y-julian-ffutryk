@@ -15,11 +15,7 @@ object casaDePepeYJulian {
 
   method tieneAlgun(categoria) = compras.any{ cosa => cosa.categoria() == categoria }
 
-  method vieneDeComprar(categoria) {
-    self.validarQueHayanCompras()
-
-    return compras.last().categoria() == categoria
-  }
+  method vieneDeComprar(categoria) = !compras.isEmpty() && compras.last().categoria() == categoria
 
   method esDerrochona() = compras.sum{ cosa => cosa.precio() } >= 9000
 
