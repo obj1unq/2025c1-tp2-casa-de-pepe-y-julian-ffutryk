@@ -1,9 +1,13 @@
 import cosas.* 
+import cuentas.*
 
 object casaDePepeYJulian {
   const property compras = []
+  var property cuenta = cuentaCorriente
 
   method comprar(cosa) {
+    cuenta.retirar(cosa.precio())
+    
     compras.add(cosa)
   }
 
