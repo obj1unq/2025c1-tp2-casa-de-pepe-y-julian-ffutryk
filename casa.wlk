@@ -13,9 +13,9 @@ object casaDePepeYJulian {
 
   method cantidadDeCosasCompradas() = compras.size()
 
-  method tieneAlgun(categoria) = compras.any{ cosa => cosa.categoria() == categoria }
+  method tieneAlgun(categoria) = compras.any{ cosa => cosa.esDeCategoria(categoria)}
 
-  method vieneDeComprar(categoria) = !compras.isEmpty() && compras.last().categoria() == categoria
+  method vieneDeComprar(categoria) = !compras.isEmpty() && compras.last().esDeCategoria(categoria)
 
   method esDerrochona() = compras.sum{ cosa => cosa.precio() } >= 9000
 
@@ -25,13 +25,13 @@ object casaDePepeYJulian {
     return compras.max{ cosa => cosa.precio() }
   }
 
-  method comprados(categoria) = compras.filter{ cosa => cosa.categoria() == categoria }
+  method comprados(categoria) = compras.filter{ cosa => cosa.esDeCategoria(categoria) }
 
-  method malaEpoca() = compras.all{ cosa => cosa.categoria() == comida }
+  method malaEpoca() = compras.all{ cosa => cosa.esDeCategoria(comida) }
 
   method queFaltaComprar(lista) = lista.filter{cosa => !compras.contains(cosa) }
 
-  method faltaComida() = compras.count{ cosa => cosa.categoria() == comida } < 2
+  method faltaComida() = compras.count{ cosa => cosa.esDeCategoria(comida) } < 2
 
   method categoriasCompradas() = compras.map{ cosa => cosa.categoria() }.asSet()
 
