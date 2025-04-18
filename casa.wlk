@@ -27,11 +27,11 @@ object casaDePepeYJulian {
 
   method comprados(categoria) = compras.filter{ cosa => cosa.esDeCategoria(categoria) }
 
-  method malaEpoca() = compras.all{ cosa => cosa.esDeCategoria(comida) }
+  method malaEpoca() = compras.all{ cosa => cosa.esComestible() }
 
   method queFaltaComprar(lista) = lista.filter{cosa => !compras.contains(cosa) }
 
-  method faltaComida() = compras.count{ cosa => cosa.esDeCategoria(comida) } < 2
+  method faltaComida() = compras.count{ cosa => cosa.esComestible() } < 2
 
   method categoriasCompradas() = compras.map{ cosa => cosa.categoria() }.asSet()
 

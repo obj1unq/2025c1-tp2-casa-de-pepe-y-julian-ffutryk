@@ -1,43 +1,56 @@
-object electrodomestico {}
-object mueble {}
-object comida {}
+object electrodomestico {
+	method esComestible() = false
+}
+
+object mueble {
+	method esComestible() = false
+}
+
+object comida {
+	method esComestible() = true
+}
 
 object heladera {
-	method precio() = 20000
+	const property categoria = electrodomestico
+	const property precio = 20000
 	
-	method categoria() = electrodomestico
+	method esDeCategoria(_categoria) = _categoria == categoria
 
-	method esDeCategoria(categoria) = categoria == self.categoria()
+	method esComestible() = categoria.esComestible()
 }
 
 object cama {
-	method precio() = 8000
+	const property categoria = mueble
+	const property precio = 8000
 	
-	method categoria() = mueble
-
-	method esDeCategoria(categoria) = categoria == self.categoria()
+	method esDeCategoria(_categoria) = _categoria == categoria
+	
+	method esComestible() = categoria.esComestible()
 }
 
 object tiraDeAsado {
-	method precio() = 350
+	const property categoria = comida
+	const property precio = 350
 	
-	method categoria() = comida
-
-	method esDeCategoria(categoria) = categoria == self.categoria()
+	method esDeCategoria(_categoria) = _categoria == categoria
+	
+	method esComestible() = categoria.esComestible()
 }
 
 object paqueteDeFideos {
-	method precio() = 50
+	const property categoria = comida
+	const property precio = 50
 	
-	method categoria() = comida
-
-	method esDeCategoria(categoria) = categoria == self.categoria()
+	method esDeCategoria(_categoria) = _categoria == categoria
+	
+	method esComestible() = categoria.esComestible()
 }
 
 object plancha {
-	method precio() = 1200
+	const property categoria = electrodomestico
+	const property precio = 1200
 	
-	method categoria() = electrodomestico
-
-	method esDeCategoria(categoria) = categoria == self.categoria()
+	method esDeCategoria(_categoria) = _categoria == categoria
+	
+	method esComestible() = categoria.esComestible()
 }
