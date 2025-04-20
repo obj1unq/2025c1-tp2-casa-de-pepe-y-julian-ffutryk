@@ -3,7 +3,11 @@ import cuentas.*
 
 object casaDePepeYJulian {
   const property compras = []
-  var property cuenta = cuentaCorriente
+  var cuenta = cuentaCorriente
+
+  method cuenta(_cuenta) {
+    cuenta = _cuenta
+  }
 
   method comprar(cosa) {
     cuenta.retirar(cosa.precio())
