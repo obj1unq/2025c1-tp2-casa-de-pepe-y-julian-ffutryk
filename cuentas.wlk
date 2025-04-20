@@ -26,8 +26,10 @@ object cuentaCorriente {
   }
 
   method validarSaldoSuficiente(cantidad) {
-    if(saldo < cantidad) self.error("Saldo insuficiente para realizar la operación")
+    if(self.puedeExtraer(cantidad)) self.error("Saldo insuficiente para realizar la operación")
   }
+
+  method puedeExtraer(cantidad) = saldo < cantidad
 }
 
 object cuentaConGastos {
