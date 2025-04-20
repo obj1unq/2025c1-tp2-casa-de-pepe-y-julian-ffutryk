@@ -35,7 +35,7 @@ object casaDePepeYJulian {
 
   method queFaltaComprar(lista) = lista.filter{cosa => !self.seCompro(cosa) }
 
-  method faltaComida() = compras.count{ cosa => cosa.esComestible() } < 2
+  method faltaComida() = self.comprados(comida).size() < 2
 
   method categoriasCompradas() = compras.map{ cosa => cosa.categoria() }.asSet()
 
