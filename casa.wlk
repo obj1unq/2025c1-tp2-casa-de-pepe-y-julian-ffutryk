@@ -21,7 +21,7 @@ object casaDePepeYJulian {
 
   method vieneDeComprar(categoria) = !compras.isEmpty() && compras.last().esDeCategoria(categoria)
 
-  method esDerrochona() = compras.sum{ cosa => cosa.precio() } >= 9000
+  method esDerrochona() = self.gastoTotal() >= 9000
 
   method compraMasCara() {
     self.validarQueHayanCompras()
@@ -42,4 +42,6 @@ object casaDePepeYJulian {
   method validarQueHayanCompras() {
     if(compras.isEmpty()) self.error("No hay compras realizadas")
   }
+
+  method gastoTotal() = compras.sum{ cosa => cosa.precio() } 
 }
