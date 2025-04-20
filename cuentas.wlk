@@ -9,20 +9,13 @@ object cuentaCorriente {
   }
 
   method depositar(cantidad) {
-    self.validarCantidadPositiva(cantidad)
-
     saldo += cantidad
   }
 
   method retirar(cantidad) {
-    self.validarCantidadPositiva(cantidad)
     self.validarSaldoSuficiente(cantidad)
     
     saldo -= cantidad
-  }
-
-  method validarCantidadPositiva(cantidad) {
-    if(cantidad <= 0) self.error("Se tiene que depositar un importe mayor a 0")
   }
 
   method validarSaldoSuficiente(cantidad) {
@@ -50,20 +43,13 @@ object cuentaConGastos {
   method depositar(cantidad) {
     const cantidadNeta = cantidad - costoPorOperacion
 
-    self.validarCantidadPositiva(cantidadNeta)
     self.validarCantidadDepositada(cantidadNeta)
 
     saldo += cantidadNeta
   }
 
   method retirar(cantidad) {
-    self.validarCantidadPositiva(cantidad)
-
     saldo -= cantidad
-  }
-
-  method validarCantidadPositiva(cantidad) {
-    if(cantidad <= 0) self.error("Se tiene que depositar un importe mayor a 0")
   }
 
   method validarCantidadDepositada(cantidad) {
