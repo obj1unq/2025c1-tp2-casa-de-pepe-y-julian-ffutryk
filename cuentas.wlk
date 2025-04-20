@@ -67,6 +67,8 @@ object cuentaConGastos {
   }
 
   method validarCantidadDepositada(cantidad) {
-    if(cantidad > 1000) self.error("Una cuenta con gastos no permite depositar mas de 1000 pesos de una vez")
+    if(self.puedeDepositar(cantidad)) self.error("Una cuenta con gastos no permite depositar mas de 1000 pesos de una vez")
   }
+
+  method puedeDepositar(cantidad) = cantidad > 1000
 }
