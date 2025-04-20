@@ -33,7 +33,7 @@ object casaDePepeYJulian {
 
   method malaEpoca() = compras.all{ cosa => cosa.esComestible() }
 
-  method queFaltaComprar(lista) = lista.filter{cosa => !compras.contains(cosa) }
+  method queFaltaComprar(lista) = lista.filter{cosa => !self.seCompro(cosa) }
 
   method faltaComida() = compras.count{ cosa => cosa.esComestible() } < 2
 
@@ -44,4 +44,6 @@ object casaDePepeYJulian {
   }
 
   method gastoTotal() = compras.sum{ cosa => cosa.precio() } 
+
+  method seCompro(cosa) = compras.contains(cosa)
 }
