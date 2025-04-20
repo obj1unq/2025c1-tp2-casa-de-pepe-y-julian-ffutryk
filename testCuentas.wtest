@@ -1,0 +1,57 @@
+import cuentas.*
+
+describe "Cuenta Corriente. Saldo inicial de 20" {
+  method initialize() {
+    cuentaCorriente.saldo(20)
+  }
+  
+  test "depositar 1000 deja saldo en 1020" {
+    cuentaCorriente.depositar(1000)
+    assert.equals(1020, cuentaCorriente.saldo())
+  }
+  
+  test "retirar 50 con saldo 1020 deja saldo en 970" {
+    cuentaCorriente.depositar(1000)
+    cuentaCorriente.retirar(50)
+    assert.equals(970, cuentaCorriente.saldo())
+  }
+  
+  test "extraer más que el saldo lanza error y saldo no cambia" {
+    cuentaCorriente.depositar(1000)
+    cuentaCorriente.retirar(50)
+    assert.throwsException({ cuentaCorriente.retirar(2000) })
+    assert.equals(970, cuentaCorriente.saldo())
+  }
+}
+
+describe "Cuenta con Gastos. Saldo inicial de 500 y un costo por operacion de 20" {
+  method initialize() {
+    cuentaConGastos.saldo(500)
+    cuentaConGastos.costoPorOperacion(20)
+  }
+  
+  test "depositar 1000 con costo por operación 20 deja saldo en 1480" {
+    cuentaConGastos.depositar(1000)
+    assert.equals(1480, cuentaConGastos.saldo())
+  }
+  
+  test "extraer 30 luego de depositar deja saldo en 1450" {
+    cuentaConGastos.depositar(1000)
+    cuentaConGastos.retirar(30)
+    assert.equals(1450, cuentaConGastos.saldo())
+  }
+  
+  test "no se puede depositar más de 1000, lanza error y saldo no cambia" {
+    cuentaConGastos.depositar(1000)
+    cuentaConGastos.retirar(30)
+    assert.throwsException({ cuentaConGastos.depositar(2000) })
+    assert.equals(1450, cuentaConGastos.saldo())
+  }
+  
+  test "puede quedar con saldo negativo al retirar más de lo que tiene" {
+    cuentaConGastos.depositar(1000)
+    cuentaConGastos.retirar(30)
+    cuentaConGastos.retirar(2000)
+    assert.equals(-550, cuentaConGastos.saldo())
+  }
+}
